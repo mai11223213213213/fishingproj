@@ -69,7 +69,7 @@ const CatchFish = () => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setFloatPos(prevPos => isMouseDown ? prevPos + 3 : prevPos - 3);
+            setFloatPos(prevPos => isMouseDown ? prevPos <= 500 ? prevPos + 3 : prevPos :  prevPos <= 0 ? prevPos : prevPos - 3);
         }, 10);
         
         return () => clearInterval(interval);
