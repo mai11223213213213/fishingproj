@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { preconnect } from 'react-dom';
 
 const generateRandomNumber = (min: number, max: number): number => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -8,56 +7,61 @@ const generateRandomNumber = (min: number, max: number): number => {
 const CatchFish = () => {
     const [fishPos, setFishPos] = useState(generateRandomNumber(1, 500));
     const [isMouseDown, setIsMouseDown] = useState(true);
-    let [floatPos, setFloatPos] = useState(fishPos)
-    let [newFishPos, setNewFishPos] = useState(generateRandomNumber(1, 500))
-    let [fishSpeed, setFishSpeed] = useState(generateRandomNumber(1, 2))
+    const [floatPos, setFloatPos] = useState(fishPos);
+    const [newFishPos, setNewFishPos] = useState(generateRandomNumber(1, 500));
+    const [finishScale, setFinishScale] = useState(0);
+    const [trueFishPos, setTrueFishPos] = useState(0)
     
-    useEffect(()=>{
-        
-        const interval = setInterval(() => {
-            setFishPos( (prevPos : any) => {
-                if(prevPos != 500 ){
-                    if(prevPos !=0){
-                        if(prevPos > newFishPos){
-                            return prevPos - fishSpeed*3
-
-                        }
-                        else if(prevPos < newFishPos){
-                            return prevPos + fishSpeed*3
-
-
-                        }
-                        else if(prevPos == newFishPos){
-                            return prevPos -1 
-                        }
-
-                    }
-                }
-
-
-            });
-        }, 100);
-        setNewFishPos(generateRandomNumber(1,500))
-        setFishSpeed(generateRandomNumber(1,4))
-        
-        return () => clearInterval(interval);
-
-
-    }, [fishPos])
 
     useEffect(() => {
-       
+        const interval = setInterval(() => {
+            setFishPos((prevPos) => { 
+                const generateNewPos = () => { 
+                    
+                    let newPos = prevPos + (generateRandomNumber(130, 300) * (generateRandomNumber(0, 1) === 0 ? 1 : -1));
+                  
+                    if (newPos <= 500 && newPos >= 0) {
+                        return newPos;
+                    }
+                    return prevPos; 
+                };
+                return generateNewPos();
+            });
+        }, 1000);
+
+        setNewFishPos(generateRandomNumber(1, 500));
+
+        return () => clearInterval(interval);
+    }, [fishPos]);
+    useEffect(() => {
+        const updateFishPos = () => {
+            const fish: any = document.querySelector(".fish");
+            if (fish) {
+                const rect = fish.getBoundingClientRect();
+                setTrueFishPos(rect.top);  
+            }
+        };
+
+        
+        const fishPosInterval = setInterval(updateFishPos, 100);
+
+        return () => clearInterval(fishPosInterval);
+    }, [fishPos]);
+
+
+    useEffect(() => {
         const handleMouseDown = (event: MouseEvent) => {
-            if (event.button === 0) { // Ліва кнопка миші
+            if (event.button === 0) {
                 setIsMouseDown(false);
             }
         };
+
         const handleMouseUp = (event: MouseEvent) => {
             if (event.button === 0) {
                 setIsMouseDown(true);
             }
         };
-                
+
         document.addEventListener('mousedown', handleMouseDown);
         document.addEventListener('mouseup', handleMouseUp);
 
@@ -66,26 +70,40 @@ const CatchFish = () => {
             document.removeEventListener('mouseup', handleMouseUp);
         };
     }, []);
+    
+    useEffect(() => {
+        if (Math.abs(floatPos - trueFishPos) < 50) { 
+            console.log("Рибу спіймано!");
+        }
+    }, [floatPos, trueFishPos]);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setFloatPos(prevPos => isMouseDown ? prevPos <= 500 ? prevPos + 3 : prevPos :  prevPos <= 0 ? prevPos : prevPos - 3);
+            setFloatPos(prevPos => 
+                isMouseDown 
+                ? (prevPos <= 500 ? prevPos + 3 : prevPos) 
+                : (prevPos <= 0 ? prevPos : prevPos - 3)
+            );
         }, 10);
-        
+
         return () => clearInterval(interval);
     }, [isMouseDown]);
 
     return (
         <div className="scale">
-            <div 
-                className="float" 
-                style={{ position: "absolute", backgroundColor: "purple", width: "200px", height: "200px", left: "20px", top: floatPos }}
-            ></div>
-            <div 
+            <div
+                className="float"
+                style={{ position: "absolute", backgroundColor: "purple", width: "200px", height: "200px", left: "20px", top: floatPos}}
+                
+            >
+                <p>{floatPos}</p>
+            </div>
+            <div
                 className="fish"
-                style={{ position: "absolute", backgroundColor: "red", width: "100px", height: "100px", left: "20px", top: fishPos, zIndex:'1', margin:'0 auto'}}
+                style={{ position: "absolute", backgroundColor: "red", width: "100px", height: "100px", left: "20px", top: fishPos, zIndex: '1', margin: '0 auto', transition:"0.3s ease" }}
 
             >
+                <p>{fishPos}</p>
 
             </div>
 
