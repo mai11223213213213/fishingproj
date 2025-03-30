@@ -1,0 +1,42 @@
+.fishing-box{
+    display: flex;
+    .fishing-pos{
+        .float{
+            position: absolute;
+            background-color: purple;
+            width: 200px;
+            height: 200px;
+            left: 20px;
+
+        }
+        .fish{
+             position: absolute;
+             background-color: red;
+             width: 100px;
+             height: 100px;
+             left: 20px;
+             z-index: '1';
+
+        }
+    }
+    .fishing-scale{
+        position: absolute;
+        background-color:lightgray;
+        width: 20px;
+        height: 500px;
+        left: 230px;
+        bottom: 5px;
+        border-radius: 12px;
+        .pogress-bar{
+            position: absolute;
+            background-color: yellow;
+            width: 20px;
+            // left: 230px;
+            bottom: 0px;
+            border-radius: 12px;
+
+        }
+    }
+
+
+}

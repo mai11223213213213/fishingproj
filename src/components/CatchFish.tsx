@@ -72,10 +72,14 @@ const CatchFish = () => {
     }, []);
     
     useEffect(() => {
-        if (Math.abs(floatPos - trueFishPos) < 50) { 
-            console.log("Рибу спіймано!");
+        if (Math.abs(floatPos - trueFishPos) < 150 && finishScale < 100) { 
+            setFinishScale((prev) => prev + 0.01)
         }
-    }, [floatPos, trueFishPos]);
+        else if(finishScale > 0  ){
+            setFinishScale((prev) => prev - 0.01)
+
+        }
+    }, [floatPos, trueFishPos, finishScale]);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -90,23 +94,30 @@ const CatchFish = () => {
     }, [isMouseDown]);
 
     return (
-        <div className="scale">
-            <div
-                className="float"
-                style={{ position: "absolute", backgroundColor: "purple", width: "200px", height: "200px", left: "20px", top: floatPos}}
+        <div className="fishing-box">
+            <div className="fishing-pos">
                 
-            >
-                <p>{floatPos}</p>
+
+                <div
+                    className="float"
+                    style={{top: floatPos}}
+                    
+                >
+                    <p>{floatPos}</p>
+                </div>
+                <div
+                    className="fish"
+                    style={{ top: fishPos, zIndex: '1', transition:"0.3s ease" }}
+
+                >
+                    <p>{fishPos}</p>
+
+                </div>
+
             </div>
-            <div
-                className="fish"
-                style={{ position: "absolute", backgroundColor: "red", width: "100px", height: "100px", left: "20px", top: fishPos, zIndex: '1', margin: '0 auto', transition:"0.3s ease" }}
-
-            >
-                <p>{fishPos}</p>
-
+            <div className="fishing-scale">
+                <div className="pogress-bar" style={{backgroundColor:"yellow", height:`${finishScale}%`}}></div>
             </div>
-
         </div>
     );
 };
