@@ -73,15 +73,15 @@ const CatchFish = () => {
     
     useEffect(() => {
         if (Math.abs(floatPos - trueFishPos) < 150 && finishScale < 100) { 
-            setFinishScale((prev) => prev + 0.01)
+            setFinishScale((prev) => prev + 0.001)
         }
         else if(finishScale > 0  ){
-            setFinishScale((prev) => prev - 0.01)
+            setFinishScale((prev) => prev - 0.003)
 
         }
     }, [floatPos, trueFishPos, finishScale]);
 
-    useEffect(() => {
+    useEffect(() => { 
         const interval = setInterval(() => {
             setFloatPos(prevPos => 
                 isMouseDown 

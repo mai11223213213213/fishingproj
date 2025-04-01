@@ -3,7 +3,7 @@ import btnImage from "../assets/img/buttonbg.jpg"
 interface forbtn{
     width?:string;
     height?:string;
-    onClickE:object;
+    onClickE:() => void;
     children:ReactNode;
     style?:object;
 
@@ -24,8 +24,8 @@ const Button = ({width,height,onClickE,children,style}:forbtn) => {
 
         
         
-        ...style}} className='btn' ><p className='btn-txt'>{children}</p></button>
+        ...style}} className={`btn-${String(children).toLowerCase()} btn`} onClick={onClickE}>{children}</button>
   )
-}
+} 
 
 export default Button
