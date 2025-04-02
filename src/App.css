@@ -56,6 +56,21 @@
   height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
+  display: flex;
+  justify-content: space-between;
+}
+.interface .btns {
+  display: flex;
+  flex-direction: column;
+}
+.interface .s-a-i .inv-box {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.interface .s-a-i .inv-box .fish-box .fish-img {
+  width: 10%;
+  height: 10%;
 }
 
 body {
