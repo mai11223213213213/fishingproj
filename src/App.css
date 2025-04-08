@@ -64,35 +64,68 @@
   flex-direction: column;
 }
 .interface .s-a-i {
-  background-color: #FFCC66;
+  position: relative;
+  background-color: #ffcc66;
   width: 35%;
+  font-family: "Papyrus", cursive;
+  border: 4px solid #a65b24;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(166, 91, 36, 0.5);
   display: flex;
-  padding: 15px 15px;
-  font-family: "Papyrus";
+  flex-direction: column;
+  padding-top: 35px;
+}
+.interface .s-a-i .close-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 .interface .s-a-i .inv-box {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
   gap: 10px;
+  justify-content: center;
 }
 .interface .s-a-i .inv-box .fish-box {
-  border: 1px solid black;
+  background: #f9e2a5;
+  border: 3px solid #a65b24;
+  border-radius: 16px;
+  padding: 5px;
+  width: 140px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  color: #b7213f;
+  font-size: 14px;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
-  color: #B7213F;
-  padding: 7px 15px;
+}
+.interface .s-a-i .inv-box .fish-box .fish-name {
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 5px;
 }
 .interface .s-a-i .inv-box .fish-box .fish-img {
-  width: 20%;
-  height: 20%;
+  width: 64px;
+  height: 64px;
+  image-rendering: pixelated;
+  margin: 5px 0;
 }
 .interface .s-a-i .inv-box .fish-box .info {
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  font-size: 12px;
+  margin: 5px 0;
 }
+.interface .s-a-i .inv-box .fish-box .info .fish-chance,
+.interface .s-a-i .inv-box .fish-box .info .fish-price {
+  color: #703c1c;
+}
+.interface .s-a-i .inv-box .btn-sold {
+  margin-bottom: 10px;
+}
+
 body {
   background-color: #000;
 }/*# sourceMappingURL=App.css.map */
