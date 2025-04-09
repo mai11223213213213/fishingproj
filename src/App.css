@@ -2,17 +2,20 @@
   display: flex;
 }
 .fishing-box .fishing-pos .float {
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   position: absolute;
-  background-color: purple;
-  width: 200px;
-  height: 200px;
+  border-radius: 20px;
+  width: 30px;
+  height: 100px;
   left: 20px;
 }
 .fishing-box .fishing-pos .fish {
   position: absolute;
-  background-color: red;
-  width: 100px;
-  height: 100px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
   left: 20px;
   z-index: "1";
 }
@@ -64,7 +67,10 @@
   flex-direction: column;
 }
 .interface .s-a-i {
+  transition: 1s ease-in;
+  display: none;
   position: relative;
+  overflow: hidden;
   background-color: #ffcc66;
   width: 35%;
   font-family: "Papyrus", cursive;
@@ -81,10 +87,13 @@
   top: 0;
 }
 .interface .s-a-i .inv-box {
+  transition: 1s ease-in;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   justify-content: center;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .interface .s-a-i .inv-box .fish-box {
   background: #f9e2a5;
@@ -108,7 +117,9 @@
 .interface .s-a-i .inv-box .fish-box .fish-img {
   width: 64px;
   height: 64px;
-  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: pixelated;
   margin: 5px 0;
 }
 .interface .s-a-i .inv-box .fish-box .info {

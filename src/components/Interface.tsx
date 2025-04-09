@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import React from 'react'
-import gameImg from "../assets/img/Location.png"
+import gameImg from "../assets/img/location.png"
 import Button from './Button'
 import CatchFish from './CatchFish'
 import Inventory from "./Inventory"
@@ -22,6 +22,7 @@ export type fish = {
   quality:string,
   price:Number,
   chance:Number,
+  fishSp?:Number
 
 }
 export type forShop = {
@@ -31,6 +32,7 @@ export type forShop = {
   lowboost?:number,
   highboost?:number,
   lengthboost?:number
+
 }
 let fish : fish[] = [
   {
@@ -181,6 +183,7 @@ let InventoryContent : fish[] = [
 
 ]
 
+
 const Interface = () => {
   const [currState, setCurrState] = useState(0)
   const shopButton = () => {
@@ -200,6 +203,26 @@ const Interface = () => {
     console.log(currState)
 
   }
+  let content = null;
+  if(currState === 0){
+      content = null
+  }
+  else if (currState === -1) {
+    content = (
+      <div className="s-a-i" >
+        <CloseBtn width="10%" height="5%" className="close-btn" onClick={closeBtn} />
+        <Inventory invContent={InventoryContent} />
+      </div>
+    );
+  } else if (currState === 1) {
+    content = (
+      <div className="s-a-i" >
+          <CloseBtn width="10%" height="5%" className="close-btn" onClick={closeBtn} />
+
+        BANANA
+      </div>
+    );
+  }
   return (
     <section className="interface" style={{backgroundImage:`url(${gameImg})`}}>
       <div className="btns">
@@ -207,11 +230,11 @@ const Interface = () => {
         <Button width='150px' height='150px' onClickE={invButton}>Inventory</Button>
         <Button width='150px' height='150px' onClickE={catchButton}>Catch</Button>
       </div>
+      {content}
+
+      <CatchFish/>
       
-      <div className="s-a-i">
-        <CloseBtn width={"10%"} height={"5%"} className="close-btn" onClick={closeBtn}/>
-        <Inventory invContent={InventoryContent}/>
-      </div>
+      
 
 
     </section>

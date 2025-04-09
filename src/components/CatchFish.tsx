@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import fishingField from "../assets/img/fishing-textures/fishing-field.jpg"
+import greenThing from "../assets/img/fishing-textures/greenThing.jpg"
+import fishThatMoves from "../assets/img/fishing-textures/fish-that-moving.jpg"
+import ForFishingField from "../assets/img/fishing-textures/for-fishingF-field.jpg"
 
 const generateRandomNumber = (min: number, max: number): number => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -73,10 +77,10 @@ const CatchFish = () => {
     
     useEffect(() => {
         if (Math.abs(floatPos - trueFishPos) < 150 && finishScale < 100) { 
-            setFinishScale((prev) => prev + 0.001)
+            setFinishScale((prev) => prev + 0.01)
         }
         else if(finishScale > 0  ){
-            setFinishScale((prev) => prev - 0.003)
+            setFinishScale((prev) => prev - 0.01)
 
         }
     }, [floatPos, trueFishPos, finishScale]);
@@ -100,14 +104,14 @@ const CatchFish = () => {
 
                 <div
                     className="float"
-                    style={{top: floatPos}}
+                    style={{top: floatPos, backgroundImage:`url(${greenThing})`}}
                     
                 >
                     <p>{floatPos}</p>
                 </div>
                 <div
                     className="fish"
-                    style={{ top: fishPos, zIndex: '1', transition:"0.3s ease" }}
+                    style={{ top: fishPos, zIndex: '1', transition:"0.3s ease", backgroundImage:`url(${fishThatMoves})` }}
 
                 >
                     <p>{fishPos}</p>
