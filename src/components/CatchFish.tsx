@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import fishingField from "../assets/img/fishing-textures/fishing-field.jpg"
 import greenThing from "../assets/img/fishing-textures/greenThing.jpg"
 import fishThatMoves from "../assets/img/fishing-textures/fish-that-moving.jpg"
-import ForFishingField from "../assets/img/fishing-textures/for-fishingF-field.jpg"
+import ForFishingField from "../assets/img/fishing-textures/for-fishing-field.jpg"
 
 const generateRandomNumber = (min: number, max: number): number => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -98,31 +98,33 @@ const CatchFish = () => {
     }, [isMouseDown]);
 
     return (
-        <div className="fishing-box">
-            <div className="fishing-pos">
-                
-
-                <div
-                    className="float"
-                    style={{top: floatPos, backgroundImage:`url(${greenThing})`}}
+        
+            <div className="fishing-box" style={{backgroundImage:`url(${fishingField})`}}>
+                <div className="fishing-pos">
                     
-                >
-                    <p>{floatPos}</p>
+
+                    <div
+                        className="float"
+                        style={{top: floatPos, backgroundImage:`url(${greenThing})`}}
+                        
+                    >
+                        
+                    </div>
+                    <div
+                        className="fish"
+                        style={{ top: fishPos, zIndex: '1', transition:"0.3s ease", backgroundImage:`url(${fishThatMoves})` }}
+
+                    >
+                    
+
+                    </div>
+
                 </div>
-                <div
-                    className="fish"
-                    style={{ top: fishPos, zIndex: '1', transition:"0.3s ease", backgroundImage:`url(${fishThatMoves})` }}
-
-                >
-                    <p>{fishPos}</p>
-
+                <div className="fishing-scale">
+                    <div className="pogress-bar" style={{backgroundColor:"yellow", height:`${finishScale}%`}}></div>
                 </div>
-
             </div>
-            <div className="fishing-scale">
-                <div className="pogress-bar" style={{backgroundColor:"yellow", height:`${finishScale}%`}}></div>
-            </div>
-        </div>
+      
     );
 };
 

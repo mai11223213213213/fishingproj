@@ -1,46 +1,56 @@
-.fishing-box{
-    display: flex;
-    .fishing-pos{
-        .float{
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            position: absolute;
-            border-radius: 20px;
-            width: 30px;
-            height: 100px;
-            left: 20px;
 
-        }
-        .fish{
-             position: absolute;
-             background-size: 100% 100%;
-             background-repeat: no-repeat;
-             
-             width: 40px;
-             height: 40px;
-             left: 20px;
-             z-index: '1';
-
-        }
-    }
-    .fishing-scale{
+    .fishing-box{
         position: absolute;
-        background-color:lightgray;
-        width: 20px;
-        height: 500px;
-        left: 230px;
-        bottom: 5px;
-        border-radius: 12px;
-        .pogress-bar{
-            position: absolute;
-            background-color: yellow;
-            width: 20px;
-            // left: 230px;
-            bottom: 0px;
-            border-radius: 12px;
+        align-items: center; 
+        align-self: center;
+        width: 10%;
+        height: 50%;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        
+        
+        .fishing-pos{
+            .float{
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                position: absolute;
+                border-radius: 20px;
+                width: 30px;
+                height: 100px;
+                left: 20px;
 
+            }
+            .fish{
+                position: absolute;
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                
+                width: 40px;
+                height: 40px;
+                left: 20px;
+                z-index: '1';
+
+            }
         }
+        .fishing-scale{
+            position: absolute;
+            background-color:lightgray;
+            width: 20px;
+            height: 500px;
+            left: 334px;
+            bottom: 5px;
+            border-radius: 12px;
+            top: 20px;
+            .pogress-bar{
+                position: absolute;
+                background-color: yellow;
+                width: 20px;
+                
+                bottom: 0px;
+                border-radius: 12px;
+
+            }
+        }
+
+
     }
-
-
-}
