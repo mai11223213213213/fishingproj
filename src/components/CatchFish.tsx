@@ -9,10 +9,10 @@ const generateRandomNumber = (min: number, max: number): number => {
 };
 
 const CatchFish = () => {
-    const [fishPos, setFishPos] = useState(generateRandomNumber(1, 500));
+    const [fishPos, setFishPos] = useState(generateRandomNumber(1, 230));
     const [isMouseDown, setIsMouseDown] = useState(true);
     const [floatPos, setFloatPos] = useState(fishPos);
-    const [newFishPos, setNewFishPos] = useState(generateRandomNumber(1, 500));
+    const [newFishPos, setNewFishPos] = useState(generateRandomNumber(1, 230));
     const [finishScale, setFinishScale] = useState(0);
     const [trueFishPos, setTrueFishPos] = useState(0)
     
@@ -22,9 +22,9 @@ const CatchFish = () => {
             setFishPos((prevPos) => { 
                 const generateNewPos = () => { 
                     
-                    let newPos = prevPos + (generateRandomNumber(130, 300) * (generateRandomNumber(0, 1) === 0 ? 1 : -1));
+                    let newPos = prevPos + (generateRandomNumber(130, 230) * (generateRandomNumber(0, 1) === 0 ? 1 : -1));
                   
-                    if (newPos <= 500 && newPos >= 0) {
+                    if (newPos <= 230 && newPos >= 0) {
                         return newPos;
                     }
                     return prevPos; 
@@ -33,7 +33,7 @@ const CatchFish = () => {
             });
         }, 1000);
 
-        setNewFishPos(generateRandomNumber(1, 500));
+        setNewFishPos(generateRandomNumber(1, 230));
 
         return () => clearInterval(interval);
     }, [fishPos]);
@@ -42,7 +42,7 @@ const CatchFish = () => {
             const fish: any = document.querySelector(".fish");
             if (fish) {
                 const rect = fish.getBoundingClientRect();
-                setTrueFishPos(rect.top);  
+                setTrueFishPos(rect.top - 170);  
             }
         };
 
@@ -76,7 +76,7 @@ const CatchFish = () => {
     }, []);
     
     useEffect(() => {
-        if (Math.abs(floatPos - trueFishPos) < 150 && finishScale < 100) { 
+        if (Math.abs(floatPos - trueFishPos) < 45 && finishScale < 100) { 
             setFinishScale((prev) => prev + 0.01)
         }
         else if(finishScale > 0  ){
@@ -89,7 +89,7 @@ const CatchFish = () => {
         const interval = setInterval(() => {
             setFloatPos(prevPos => 
                 isMouseDown 
-                ? (prevPos <= 500 ? prevPos + 3 : prevPos) 
+                ? (prevPos <= 230 ? prevPos + 3 : prevPos) 
                 : (prevPos <= 0 ? prevPos : prevPos - 3)
             );
         }, 10);
@@ -106,9 +106,10 @@ const CatchFish = () => {
                     <div
                         className="float"
                         style={{top: floatPos, backgroundImage:`url(${greenThing})`}}
+                       
                         
                     >
-                        
+                         
                     </div>
                     <div
                         className="fish"
@@ -116,7 +117,7 @@ const CatchFish = () => {
 
                     >
                     
-
+                        
                     </div>
 
                 </div>

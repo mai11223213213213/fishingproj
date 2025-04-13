@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import React from 'react'
-import gameImg from "../assets/img/Location.png"
+import gameImg from "../assets/img/location.png"
 import Button from './Button'
 import CatchFish from './CatchFish'
 import Inventory from "./Inventory"
@@ -20,15 +20,15 @@ export type fish = {
   name:string,
   imgSrc:string,
   quality:string,
-  price:Number,
-  chance:Number,
-  fishSp?:Number
+  price:number,
+  chance:number,
+  fishSp?:number
 
 }
 export type forShop = {
   name:string,
   imgSrc:string,
-  price:Number,
+  price:number,
   lowboost?:number,
   highboost?:number,
   lengthboost?:number
@@ -40,7 +40,7 @@ let fish : fish[] = [
     imgSrc:CommonFish1,
     quality:"common",
     price:200,
-    chance:0.1
+    chance:0.4
     
 
   },
@@ -48,8 +48,8 @@ let fish : fish[] = [
     name:"Common fish2",
     imgSrc:CommonFish2,
     quality:"common",
-    price:200,
-    chance:0.1
+    price:2010,
+    chance:0.4
     
 
   },
@@ -58,7 +58,7 @@ let fish : fish[] = [
     imgSrc:RareFish1,
     quality:"rare",
     price:200,
-    chance:0.1
+    chance:0.05
     
 
   },
@@ -67,7 +67,7 @@ let fish : fish[] = [
     imgSrc:RareFish2,
     quality:"rare",
     price:200,
-    chance:0.1
+    chance:0.05
     
 
   },
@@ -76,7 +76,7 @@ let fish : fish[] = [
     imgSrc:SuperrareFish1,
     quality:"Super rare",
     price:200,
-    chance:0.1
+    chance:0.025
     
 
   },
@@ -85,7 +85,7 @@ let fish : fish[] = [
     imgSrc:SuperrareFish2,
     quality:"Super rare", 
     price:200,
-    chance:0.1
+    chance:0.025
     
 
   },
@@ -94,7 +94,7 @@ let fish : fish[] = [
     imgSrc:EpicFish1,
     quality:"epic",
     price:200,
-    chance:0.1
+    chance:0.015
     
 
   },
@@ -103,7 +103,7 @@ let fish : fish[] = [
     imgSrc:EpicFish2,
     quality:"epic",
     price:200,
-    chance:0.1
+    chance:0.020
     
 
   },
@@ -112,7 +112,7 @@ let fish : fish[] = [
     imgSrc:LegendaryFish1,
     quality:"legendary",
     price:200,
-    chance:0.1
+    chance:0.01
     
 
   },
@@ -121,7 +121,7 @@ let fish : fish[] = [
     imgSrc:LegendaryFish2,
     quality:"legendary",
     price:200,
-    chance:0.1
+    chance:0.01
     
 
   },
@@ -183,9 +183,29 @@ let InventoryContent : fish[] = [
 
 ]
 
-
 const Interface = () => {
   const [currState, setCurrState] = useState(0)
+  const [random_num,setRandomNum] = useState(0)
+  const [droppedFish, setDroppedFish] = useState<fish | null>(null);
+  const [sum, setSum] = useState(0)
+  let dropedFish = null;
+  const totalChance = fish.reduce((total, fish) => (total + fish.chance), 0);
+  
+
+  const randomFishChoise = () => {
+    const random = Math.random() * totalChance;
+    let cumulative = 0;
+  
+    for (let i = 0; i < fish.length; i++) {
+      cumulative += fish[i].chance;
+      if (random <= cumulative) {
+        return fish[i];
+      }
+    }
+    return null;
+  };
+  
+  console.log(dropedFish)
   const shopButton = () => {
     setCurrState((prev : any) => prev = 1)
     console.log(currState);
@@ -195,7 +215,9 @@ const Interface = () => {
     console.log(currState);
   }
   const catchButton = () => {
-    console.log(currState);
+    const result = randomFishChoise();
+    setDroppedFish(result);
+    console.log(result);
     
   }
   const closeBtn = () => {
