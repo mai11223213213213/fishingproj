@@ -131,7 +131,7 @@ let fish : fish[] = [
 
 
 
-let InventoryContent : fish[] = [
+let inventoryContent : fish[] = [
   {
     name:"test",
     imgSrc:gameImg,
@@ -140,55 +140,17 @@ let InventoryContent : fish[] = [
     chance:10
 
   },
-  {
-    name:"test",
-    imgSrc:gameImg,
-    quality:"Legendary",
-    price:99999,
-    chance:10
-
-  },
-  {
-    name:"test",
-    imgSrc:gameImg,
-    quality:"Legendary",
-    price:99999,
-    chance:10
-
-  },
-  {
-    name:"test",
-    imgSrc:gameImg,
-    quality:"Legendary",
-    price:99999,
-    chance:10
-
-  },
-  {
-    name:"test",
-    imgSrc:gameImg,
-    quality:"Legendary",
-    price:99999,
-    chance:10
-
-  },
-  {
-    name:"test",
-    imgSrc:gameImg,
-    quality:"Legendary",
-    price:99999,
-    chance:10
-
-  },
+  
 
 ]
 
 const Interface = () => {
   const [currState, setCurrState] = useState(0)
   const [random_num,setRandomNum] = useState(0)
+  const [isGame, setIsGame] = useState(false)
   const [droppedFish, setDroppedFish] = useState<fish | null>(null);
   const [sum, setSum] = useState(0)
-  let dropedFish = null;
+  
   const totalChance = fish.reduce((total, fish) => (total + fish.chance), 0);
   
 
@@ -205,7 +167,7 @@ const Interface = () => {
     return null;
   };
   
-  console.log(dropedFish)
+  
   const shopButton = () => {
     setCurrState((prev : any) => prev = 1)
     console.log(currState);
@@ -217,7 +179,9 @@ const Interface = () => {
   const catchButton = () => {
     const result = randomFishChoise();
     setDroppedFish(result);
+    setIsGame(true)
     console.log(result);
+
     
   }
   const closeBtn = () => {
@@ -233,7 +197,7 @@ const Interface = () => {
     content = (
       <div className="s-a-i" >
         <CloseBtn width="10%" height="5%" className="close-btn" onClick={closeBtn} />
-        <Inventory invContent={InventoryContent} />
+        <Inventory invContent={inventoryContent} />
       </div>
     );
   } else if (currState === 1) {
@@ -245,6 +209,13 @@ const Interface = () => {
       </div>
     );
   }
+  // let game = null
+  // isGame ? game=<CatchFish invCont={inventoryContent} droppedFish={droppedFish}/> : game = null
+
+  
+  
+
+  
   return (
     <section className="interface" style={{backgroundImage:`url(${gameImg})`}}>
       <div className="btns">
@@ -254,7 +225,8 @@ const Interface = () => {
       </div>
       {content}
 
-      <CatchFish/>
+      
+      {isGame && <CatchFish invCont={inventoryContent} droppedFish={droppedFish} isGame={isGame}/>}
       
       
 

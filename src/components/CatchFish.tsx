@@ -7,8 +7,12 @@ import ForFishingField from "../assets/img/fishing-textures/for-fishing-field.jp
 const generateRandomNumber = (min: number, max: number): number => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 };
-
-const CatchFish = () => {
+interface banana{
+    invCont:object,
+    droppedFish:object | null,
+    isGame:boolean
+}
+const CatchFish = ({invCont, droppedFish, isGame}:banana) => {
     const [fishPos, setFishPos] = useState(generateRandomNumber(1, 230));
     const [isMouseDown, setIsMouseDown] = useState(true);
     const [floatPos, setFloatPos] = useState(fishPos);
@@ -22,7 +26,7 @@ const CatchFish = () => {
             setFishPos((prevPos) => { 
                 const generateNewPos = () => { 
                     
-                    let newPos = prevPos + (generateRandomNumber(130, 230) * (generateRandomNumber(0, 1) === 0 ? 1 : -1));
+                    let newPos = prevPos + (generateRandomNumber(20, 120) * (generateRandomNumber(0, 1) === 0 ? 1 : -1));
                   
                     if (newPos <= 230 && newPos >= 0) {
                         return newPos;
@@ -96,7 +100,25 @@ const CatchFish = () => {
 
         return () => clearInterval(interval);
     }, [isMouseDown]);
+    const winEvent = () => {
+            isGame=false
+    }
+    const loseEvent = () => {
 
+    }
+    useEffect(()=>{
+
+        if(finishScale >= 100){
+            winEvent()
+        }
+        else if(finishScale <= 0){
+            loseEvent()
+        }
+        else{
+            return 
+        }
+
+    },[finishScale])
     return (
         
             <div className="fishing-box" style={{backgroundImage:`url(${fishingField})`}}>
