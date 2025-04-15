@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import React from 'react'
-import gameImg from "../assets/img/location.png"
+import gameImg from "../assets/img/Location.png"
 import Button from './Button'
 import CatchFish from './CatchFish'
 import Inventory from "./Inventory"

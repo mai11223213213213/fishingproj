@@ -19,6 +19,9 @@ const CatchFish = ({invCont, droppedFish, isGame}:banana) => {
     const [newFishPos, setNewFishPos] = useState(generateRandomNumber(1, 230));
     const [finishScale, setFinishScale] = useState(0);
     const [trueFishPos, setTrueFishPos] = useState(0)
+
+    const [floatManPos, setFloatMaxPos] = useState(0)
+    const [floatMinPos, setFloatMinPos] = useState(0)
     
 
     useEffect(() => {
@@ -26,7 +29,7 @@ const CatchFish = ({invCont, droppedFish, isGame}:banana) => {
             setFishPos((prevPos) => { 
                 const generateNewPos = () => { 
                     
-                    let newPos = prevPos + (generateRandomNumber(20, 120) * (generateRandomNumber(0, 1) === 0 ? 1 : -1));
+                    let newPos = prevPos + (generateRandomNumber(2, 120) * (generateRandomNumber(0, 1) === 0 ? 1 : -1));
                   
                     if (newPos <= 230 && newPos >= 0) {
                         return newPos;
@@ -37,7 +40,7 @@ const CatchFish = ({invCont, droppedFish, isGame}:banana) => {
             });
         }, 1000);
 
-        setNewFishPos(generateRandomNumber(1, 230));
+        setNewFishPos(generateRandomNumber(20, 120));
 
         return () => clearInterval(interval);
     }, [fishPos]);
@@ -46,7 +49,8 @@ const CatchFish = ({invCont, droppedFish, isGame}:banana) => {
             const fish: any = document.querySelector(".fish");
             if (fish) {
                 const rect = fish.getBoundingClientRect();
-                setTrueFishPos(rect.top - 170);  
+                setTrueFishPos(rect.top  - (window.screen.height * 26.85185/100) )  //(window.screen.height * 26.85/100)
+                
             }
         };
 
@@ -80,8 +84,25 @@ const CatchFish = ({invCont, droppedFish, isGame}:banana) => {
     }, []);
     
     useEffect(() => {
-        if (Math.abs(floatPos - trueFishPos) < 45 && finishScale < 100) { 
+        const Bmax_y: any = document.querySelector(".max-y");
+        const Bmix_y: any = document.querySelector(".min-y");
+        if (Bmax_y) {
+            const max = Bmax_y.getBoundingClientRect();
+            setFloatMaxPos(max.top  - (window.screen.height * 26.85185/100) )  //(window.screen.height * 26.85/100)
+            console.log("max",max.top  - (window.screen.height * 26.85185/100))
+        }
+        if (Bmix_y) {
+            const min = Bmix_y.getBoundingClientRect();
+            setFloatMinPos(min.top  - (window.screen.height * 26.85185/100) )  //(window.screen.height * 26.85/100)
+            console.log("min",min.top  - (window.screen.height * 26.85185/100))
+        }
+
+
+
+
+        if (trueFishPos >= floatMinPos && trueFishPos <= floatManPos && finishScale < 100) { 
             setFinishScale((prev) => prev + 0.01)
+
         }
         else if(finishScale > 0  ){
             setFinishScale((prev) => prev - 0.01)
@@ -93,8 +114,8 @@ const CatchFish = ({invCont, droppedFish, isGame}:banana) => {
         const interval = setInterval(() => {
             setFloatPos(prevPos => 
                 isMouseDown 
-                ? (prevPos <= 230 ? prevPos + 3 : prevPos) 
-                : (prevPos <= 0 ? prevPos : prevPos - 3)
+                ? (prevPos <= 230 ? prevPos + 1 : prevPos) 
+                : (prevPos <= 0 ? prevPos : prevPos - 1)
             );
         }, 10);
 
@@ -131,14 +152,18 @@ const CatchFish = ({invCont, droppedFish, isGame}:banana) => {
                        
                         
                     >
-                         
+                        <div className="min-y"></div>
+                        <div className="max-y"></div>
+                        
+                        
+            
                     </div>
                     <div
                         className="fish"
                         style={{ top: fishPos, zIndex: '1', transition:"0.3s ease", backgroundImage:`url(${fishThatMoves})` }}
 
                     >
-                    
+                    {trueFishPos}
                         
                     </div>
 
