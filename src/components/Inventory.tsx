@@ -4,16 +4,31 @@ import { fish } from './Interface'
 import gameImg from "../assets/img/location.png"
 
 interface inv{
-    invContent:fish[]
+    invContent:fish[],
+    invUpdate: (index:number) => void,
+    setBalance:React.Dispatch<React.SetStateAction<number>>
+    
 }
 
-const Inventory = ({invContent}:inv) => {
+const Inventory = ({invContent, invUpdate, setBalance}:inv) => {
     const sold = (event: React.MouseEvent<HTMLButtonElement>) =>{
             const btns = document.querySelectorAll(".btn-sold")
             const btn = event.currentTarget
+            let fishPrice = btn.parentElement?.children[3].children[1].textContent?.split(":")[1]
             console.log(btns)
-            btn.parentElement?.remove
+            
             console.log(invContent)
+            for(let i=0; i < btns.length; i++){
+                if(btns[i] == btn){
+                    invContent.splice(i,1)
+                    setBalance((prev:number)=> prev += Number(fishPrice))
+                    invUpdate(i)
+                    
+                    break
+
+                }
+
+            }
 
     
             }

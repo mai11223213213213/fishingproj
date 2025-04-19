@@ -142,13 +142,10 @@ let fish : fish[] = [
 
 
 
-let inventoryContent : fish[]  = [
-  
-  
 
-]
 
 const Interface = () => {
+  const [inventoryContent, setinventoryContent] = useState<fish[]>([])
   const [currState, setCurrState] = useState(0)
   const [random_num,setRandomNum] = useState(0)
   const [balance, setBalance] = useState(0)
@@ -164,16 +161,19 @@ const Interface = () => {
     
 
   }
-  const updateInvStatus = () =>{
-    inventoryContent.push(droppedFish ? droppedFish : {
+  const updateInvStatusAdd = () =>{
+    setinventoryContent((prev) => [...(prev || []), droppedFish ? droppedFish : {
       name:"test",
       imgSrc:gameImg,
       quality:"Legendary",
       price:99999,
       chance:10,
       fishSp:111
-  
-    })
+    }])
+  }
+  const updateInvStatusDel = (index:number) =>{
+    setinventoryContent((prev)=>prev?.splice(index, 1))
+
   }
 
   const randomFishChoise = () => {
@@ -221,7 +221,7 @@ const Interface = () => {
     content = (
       <div className="s-a-i" >
         <CloseBtn width="10%" height="5%" className="close-btn" onClick={closeBtn} />
-        <Inventory invContent={inventoryContent} />
+        <Inventory invContent={inventoryContent} invUpdate={updateInvStatusDel} setBalance={setBalance}/>
       </div>
     );
   } else if (currState === 1) {
@@ -254,7 +254,7 @@ const Interface = () => {
       {content}
 
       
-      {isGame && <CatchFish invCont={inventoryContent} droppedFish={droppedFish} update={updateGameStatus} update2={updateInvStatus}/>}
+      {isGame && <CatchFish invCont={inventoryContent} droppedFish={droppedFish} update={updateGameStatus} update2={updateInvStatusAdd}/>}
       
       
 
