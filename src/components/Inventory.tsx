@@ -6,10 +6,17 @@ import gameImg from "../assets/img/location.png"
 interface inv{
     invContent:fish[]
 }
-const sold = () =>{
-    console.log('kasjdlaikdhalwwidhoaija')
-}
+
 const Inventory = ({invContent}:inv) => {
+    const sold = (event: React.MouseEvent<HTMLButtonElement>) =>{
+            const btns = document.querySelectorAll(".btn-sold")
+            const btn = event.currentTarget
+            console.log(btns)
+            btn.parentElement?.remove
+            console.log(invContent)
+
+    
+            }
   return (
     <div className="inv-box">
         

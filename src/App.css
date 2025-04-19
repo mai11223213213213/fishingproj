@@ -22,12 +22,12 @@
   padding: 0;
 }
 .fishing-box .fishing-pos .float .min-y {
-  width: 1%;
-  height: 1%;
+  width: 0.3%;
+  height: 0.3%;
 }
 .fishing-box .fishing-pos .float .max-y {
-  width: 1%;
-  height: 1%;
+  width: 0.3%;
+  height: 0.3%;
 }
 .fishing-box .fishing-pos .fish {
   position: absolute;
@@ -87,6 +87,17 @@
   display: flex;
   flex-direction: column;
 }
+.interface .btns .balance {
+  display: flex;
+  height: 15%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: #B7213F;
+  font-family: "Papyrus";
+  justify-content: center;
+  align-items: center;
+  font-size: 100%;
+}
 .interface .s-a-i {
   transition: 1s ease-in;
   display: none;
@@ -138,7 +149,9 @@
 .interface .s-a-i .inv-box .fish-box .fish-img {
   width: 64px;
   height: 64px;
-  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: pixelated;
   margin: 5px 0;
 }
 .interface .s-a-i .inv-box .fish-box .info {

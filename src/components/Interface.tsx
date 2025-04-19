@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import React from 'react'
-import gameImg from "../assets/img/Location.png"
+import gameImg from "../assets/img/location.png"
 import Button from './Button'
 import CatchFish from './CatchFish'
 import Inventory from "./Inventory"
+import btnImage from "../assets/img/buttonbg.jpg"
 import {ReactComponent as CloseBtn } from '../assets/img/close-svgrepo-com.svg';
 import CommonFish1 from '../assets/img/fishes/Common_fish1.jpg';
 import CommonFish2 from '../assets/img/fishes/Common_fish2.jpg';
@@ -22,7 +23,7 @@ export type fish = {
   quality:string,
   price:number,
   chance:number,
-  fishSp?:number
+  fishSp:number
 
 }
 export type forShop = {
@@ -40,7 +41,8 @@ let fish : fish[] = [
     imgSrc:CommonFish1,
     quality:"common",
     price:200,
-    chance:0.4
+    chance:0.4,
+    fishSp:1.2
     
 
   },
@@ -49,7 +51,8 @@ let fish : fish[] = [
     imgSrc:CommonFish2,
     quality:"common",
     price:2010,
-    chance:0.4
+    chance:0.4,
+    fishSp:1.2
     
 
   },
@@ -58,7 +61,8 @@ let fish : fish[] = [
     imgSrc:RareFish1,
     quality:"rare",
     price:200,
-    chance:0.05
+    chance:0.05,
+    fishSp:0.7
     
 
   },
@@ -67,7 +71,8 @@ let fish : fish[] = [
     imgSrc:RareFish2,
     quality:"rare",
     price:200,
-    chance:0.05
+    chance:0.05,
+    fishSp:0.7
     
 
   },
@@ -76,7 +81,8 @@ let fish : fish[] = [
     imgSrc:SuperrareFish1,
     quality:"Super rare",
     price:200,
-    chance:0.025
+    chance:0.025,
+    fishSp:0.5
     
 
   },
@@ -85,7 +91,8 @@ let fish : fish[] = [
     imgSrc:SuperrareFish2,
     quality:"Super rare", 
     price:200,
-    chance:0.025
+    chance:0.025,
+    fishSp:0.5
     
 
   },
@@ -94,7 +101,8 @@ let fish : fish[] = [
     imgSrc:EpicFish1,
     quality:"epic",
     price:200,
-    chance:0.015
+    chance:0.015,
+    fishSp:0.3
     
 
   },
@@ -103,7 +111,8 @@ let fish : fish[] = [
     imgSrc:EpicFish2,
     quality:"epic",
     price:200,
-    chance:0.020
+    chance:0.020,
+    fishSp:0.3
     
 
   },
@@ -112,7 +121,8 @@ let fish : fish[] = [
     imgSrc:LegendaryFish1,
     quality:"legendary",
     price:200,
-    chance:0.01
+    chance:0.01,
+    fishSp:0.2
     
 
   },
@@ -121,7 +131,8 @@ let fish : fish[] = [
     imgSrc:LegendaryFish2,
     quality:"legendary",
     price:200,
-    chance:0.01
+    chance:0.01,
+    fishSp:0.2
     
 
   },
@@ -131,15 +142,8 @@ let fish : fish[] = [
 
 
 
-let inventoryContent : fish[] = [
-  {
-    name:"test",
-    imgSrc:gameImg,
-    quality:"Legendary",
-    price:99999,
-    chance:10
-
-  },
+let inventoryContent : fish[]  = [
+  
   
 
 ]
@@ -147,12 +151,30 @@ let inventoryContent : fish[] = [
 const Interface = () => {
   const [currState, setCurrState] = useState(0)
   const [random_num,setRandomNum] = useState(0)
-  const [isGame, setIsGame] = useState(false)
+  const [balance, setBalance] = useState(0)
+  
   const [droppedFish, setDroppedFish] = useState<fish | null>(null);
   const [sum, setSum] = useState(0)
   
   const totalChance = fish.reduce((total, fish) => (total + fish.chance), 0);
+  const [isGame, setIsGame] = useState(false)
+
+  const updateGameStatus = (data1:boolean) => {
+    setIsGame(data1)
+    
+
+  }
+  const updateInvStatus = () =>{
+    inventoryContent.push(droppedFish ? droppedFish : {
+      name:"test",
+      imgSrc:gameImg,
+      quality:"Legendary",
+      price:99999,
+      chance:10,
+      fishSp:111
   
+    })
+  }
 
   const randomFishChoise = () => {
     const random = Math.random() * totalChance;
@@ -177,10 +199,12 @@ const Interface = () => {
     console.log(currState);
   }
   const catchButton = () => {
+    
     const result = randomFishChoise();
     setDroppedFish(result);
     setIsGame(true)
     console.log(result);
+
 
     
   }
@@ -222,11 +246,15 @@ const Interface = () => {
         <Button width='150px' height='150px' onClickE={shopButton}>Shop</Button>
         <Button width='150px' height='150px' onClickE={invButton}>Inventory</Button>
         <Button width='150px' height='150px' onClickE={catchButton}>Catch</Button>
+        <div className="balance" style={{backgroundImage:`url(${btnImage})`}}> Balance {balance}
+        </div>
       </div>
+     
+       
       {content}
 
       
-      {isGame && <CatchFish invCont={inventoryContent} droppedFish={droppedFish} isGame={isGame}/>}
+      {isGame && <CatchFish invCont={inventoryContent} droppedFish={droppedFish} update={updateGameStatus} update2={updateInvStatus}/>}
       
       
 

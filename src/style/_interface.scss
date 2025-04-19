@@ -9,6 +9,17 @@
     .btns{
         display: flex;
         flex-direction: column;
+        .balance{
+          display: flex;
+          height: 15%;
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          color:#B7213F;
+          font-family: "Papyrus";
+          justify-content: center;
+          align-items: center;
+          font-size: 100%;
+        }
     }
    
       .s-a-i {

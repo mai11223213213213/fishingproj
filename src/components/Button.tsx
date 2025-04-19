@@ -3,10 +3,9 @@ import btnImage from "../assets/img/buttonbg.jpg"
 interface forbtn{
     width?:string;
     height?:string;
-    onClickE:() => void;
+    onClickE?: React.MouseEventHandler<HTMLButtonElement>
     children:ReactNode;
-    style?:object;
-
+    style?:object
 
 }
 const Button = ({width,height,onClickE,children,style}:forbtn) => {
