@@ -40,7 +40,7 @@ let fish : fish[] = [
     name:"Common fish1",
     imgSrc:CommonFish1,
     quality:"common",
-    price:200,
+    price:10,
     chance:0.4,
     fishSp:1.2
     
@@ -50,7 +50,7 @@ let fish : fish[] = [
     name:"Common fish2",
     imgSrc:CommonFish2,
     quality:"common",
-    price:2010,
+    price:10,
     chance:0.4,
     fishSp:1.2
     
@@ -60,7 +60,7 @@ let fish : fish[] = [
     name:"Rare fish1",
     imgSrc:RareFish1,
     quality:"rare",
-    price:200,
+    price:25,
     chance:0.05,
     fishSp:0.7
     
@@ -70,7 +70,7 @@ let fish : fish[] = [
     name:"Rare fish2",
     imgSrc:RareFish2,
     quality:"rare",
-    price:200,
+    price:25,
     chance:0.05,
     fishSp:0.7
     
@@ -80,7 +80,7 @@ let fish : fish[] = [
     name:"Super rare fish1",
     imgSrc:SuperrareFish1,
     quality:"Super rare",
-    price:200,
+    price:50,
     chance:0.025,
     fishSp:0.5
     
@@ -90,7 +90,7 @@ let fish : fish[] = [
     name:"Super rare fish2",
     imgSrc:SuperrareFish2,
     quality:"Super rare", 
-    price:200,
+    price:50,
     chance:0.025,
     fishSp:0.5
     
@@ -120,7 +120,7 @@ let fish : fish[] = [
     name:"Legendary fish1",
     imgSrc:LegendaryFish1,
     quality:"legendary",
-    price:200,
+    price:500,
     chance:0.01,
     fishSp:0.2
     
@@ -130,7 +130,7 @@ let fish : fish[] = [
     name:"Legendary fish2",
     imgSrc:LegendaryFish2,
     quality:"legendary",
-    price:200,
+    price:500,
     chance:0.01,
     fishSp:0.2
     
@@ -172,7 +172,7 @@ const Interface = () => {
     }])
   }
   const updateInvStatusDel = (index:number) =>{
-    setinventoryContent((prev)=>prev?.splice(index, 1))
+    setinventoryContent((prev) => prev ? prev.filter((_, i) => i !== index) : [])
 
   }
 
