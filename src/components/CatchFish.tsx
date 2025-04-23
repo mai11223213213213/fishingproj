@@ -11,9 +11,10 @@ interface banana{
     invCont:object,
     droppedFish:fish | null,
     update:(data1:boolean) => void,
-    update2: () => void
+    update2: () => void,
+    setEndGame:React.Dispatch<React.SetStateAction<boolean>>
 }
-const CatchFish = ({invCont, droppedFish,update, update2}:banana) => {
+const CatchFish = ({invCont, droppedFish,update, update2,setEndGame}:banana) => {
     const [fishPos, setFishPos] = useState(generateRandomNumber(1, 230));
     const [isMouseDown, setIsMouseDown] = useState(true);
     const [floatPos, setFloatPos] = useState(fishPos);
@@ -23,6 +24,7 @@ const CatchFish = ({invCont, droppedFish,update, update2}:banana) => {
 
     const [floatManPos, setFloatMaxPos] = useState(0)
     const [floatMinPos, setFloatMinPos] = useState(0)
+    
     
 
     useEffect(() => {
@@ -127,6 +129,7 @@ const CatchFish = ({invCont, droppedFish,update, update2}:banana) => {
         update2();
         let game = false;
         update(game);
+        setEndGame(true)
         
             
 

@@ -16,6 +16,7 @@ import EpicFish1 from '../assets/img/fishes/Epic_fish1.jpg';
 import EpicFish2 from '../assets/img/fishes/Epic_fish2.jpg';
 import LegendaryFish1 from '../assets/img/fishes/Legendary_fish1.jpg';
 import LegendaryFish2 from '../assets/img/fishes/Legendary_fish2.jpg';
+import DroppedFish from "./DroppedFish"
 
 export type fish = {
   name:string,
@@ -155,7 +156,7 @@ const Interface = () => {
   
   const totalChance = fish.reduce((total, fish) => (total + fish.chance), 0);
   const [isGame, setIsGame] = useState(false)
-
+  const [isEndGame, setIsEndGame] = useState(false)
   const updateGameStatus = (data1:boolean) => {
     setIsGame(data1)
     
@@ -199,7 +200,8 @@ const Interface = () => {
     console.log(currState);
   }
   const catchButton = () => {
-    
+    setIsEndGame(false)
+    setCurrState((prev : any) => prev = 0)
     const result = randomFishChoise();
     setDroppedFish(result);
     setIsGame(true)
@@ -254,10 +256,8 @@ const Interface = () => {
       {content}
 
       
-      {isGame && <CatchFish invCont={inventoryContent} droppedFish={droppedFish} update={updateGameStatus} update2={updateInvStatusAdd}/>}
-      
-      
-
+      {isGame && <CatchFish invCont={inventoryContent} droppedFish={droppedFish} update={updateGameStatus} update2={updateInvStatusAdd} setEndGame={setIsEndGame}/>}
+      {isEndGame && <DroppedFish droppedFish={droppedFish} setEndGame={setIsEndGame}/>  }
 
     </section>
   )

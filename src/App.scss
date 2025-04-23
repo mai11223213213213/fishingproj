@@ -1,6 +1,12 @@
 @import "./style/CatchFish";
 @import "./style/button";
 @import "./style/interface";
+@import "./style/droppedFish";
 body{
     background-color: #000;
+}
+*{
+    user-select: none;
+    font-family: "Papyrus";
+
 }

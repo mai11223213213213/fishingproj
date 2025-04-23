@@ -169,6 +169,38 @@
   margin-bottom: 10px;
 }
 
+.dropped-box {
+  display: flex;
+  width: 30%;
+  height: 25%;
+  border-radius: 7px;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(236, 236, 236);
+}
+.dropped-box .dropped-name {
+  height: 10%;
+}
+.dropped-box .box-separation {
+  width: 85%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+.dropped-box .box-separation .dropped-img {
+  width: 40%;
+  height: 70%;
+  border: 5px solid brown;
+}
 body {
   background-color: #000;
+}
+
+* {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-family: "Papyrus";
 }/*# sourceMappingURL=App.css.map */
