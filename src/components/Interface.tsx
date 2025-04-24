@@ -24,7 +24,8 @@ export type fish = {
   quality:string,
   price:number,
   chance:number,
-  fishSp:number
+  fishSp:number,
+  scaleFillspd:number
 
 }
 export type forShop = {
@@ -43,7 +44,8 @@ let fish : fish[] = [
     quality:"common",
     price:10,
     chance:0.4,
-    fishSp:1.2
+    fishSp:1.2,
+    scaleFillspd:0.009
     
 
   },
@@ -53,7 +55,9 @@ let fish : fish[] = [
     quality:"common",
     price:10,
     chance:0.4,
-    fishSp:1.2
+    fishSp:1.2,
+    
+    scaleFillspd:0.009
     
 
   },
@@ -63,7 +67,8 @@ let fish : fish[] = [
     quality:"rare",
     price:25,
     chance:0.05,
-    fishSp:0.7
+    fishSp:0.7,
+    scaleFillspd:0.007
     
 
   },
@@ -73,7 +78,8 @@ let fish : fish[] = [
     quality:"rare",
     price:25,
     chance:0.05,
-    fishSp:0.7
+    fishSp:0.7,
+    scaleFillspd:0.007
     
 
   },
@@ -83,7 +89,8 @@ let fish : fish[] = [
     quality:"Super rare",
     price:50,
     chance:0.025,
-    fishSp:0.5
+    fishSp:0.5,
+    scaleFillspd:0.004
     
 
   },
@@ -93,7 +100,8 @@ let fish : fish[] = [
     quality:"Super rare", 
     price:50,
     chance:0.025,
-    fishSp:0.5
+    fishSp:0.5,
+    scaleFillspd:0.004
     
 
   },
@@ -103,7 +111,8 @@ let fish : fish[] = [
     quality:"epic",
     price:200,
     chance:0.015,
-    fishSp:0.3
+    fishSp:0.3,
+    scaleFillspd:0.003
     
 
   },
@@ -113,7 +122,8 @@ let fish : fish[] = [
     quality:"epic",
     price:200,
     chance:0.020,
-    fishSp:0.3
+    fishSp:0.3,
+    scaleFillspd:0.003
     
 
   },
@@ -123,7 +133,8 @@ let fish : fish[] = [
     quality:"legendary",
     price:500,
     chance:0.01,
-    fishSp:0.2
+    fishSp:0.2,
+    scaleFillspd:0.002
     
 
   },
@@ -133,7 +144,8 @@ let fish : fish[] = [
     quality:"legendary",
     price:500,
     chance:0.01,
-    fishSp:0.2
+    fishSp:0.2,
+    scaleFillspd:0.002
     
 
   },
@@ -151,7 +163,15 @@ const Interface = () => {
   const [random_num,setRandomNum] = useState(0)
   const [balance, setBalance] = useState(0)
   
-  const [droppedFish, setDroppedFish] = useState<fish | null>(null);
+  const [droppedFish, setDroppedFish] = useState<fish>({
+    name:"null",
+    imgSrc:"null",
+    quality:"null",
+    price:0,
+    chance:0,
+    fishSp:0,
+    scaleFillspd:0
+  });
   const [sum, setSum] = useState(0)
   
   const totalChance = fish.reduce((total, fish) => (total + fish.chance), 0);
@@ -169,7 +189,8 @@ const Interface = () => {
       quality:"Legendary",
       price:99999,
       chance:10,
-      fishSp:111
+      fishSp:111,
+      scaleFillspd:0.01
     }])
   }
   const updateInvStatusDel = (index:number) =>{
@@ -187,7 +208,15 @@ const Interface = () => {
         return fish[i];
       }
     }
-    return null;
+    return {
+      name:"test",
+      imgSrc:gameImg,
+      quality:"Legendary",
+      price:99999,
+      chance:10,
+      fishSp:111,
+      scaleFillspd:0.01
+    };
   };
   
   

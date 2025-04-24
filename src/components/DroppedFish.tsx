@@ -11,13 +11,14 @@ import EpicFish2 from '../assets/img/fishes/Epic_fish2.jpg';
 import LegendaryFish1 from '../assets/img/fishes/Legendary_fish1.jpg';
 import LegendaryFish2 from '../assets/img/fishes/Legendary_fish2.jpg';
 import gameImg from "../assets/img/location.png"
+import Button from './Button';
 interface pum{
     droppedFish:fish | null,
     setEndGame:React.Dispatch<React.SetStateAction<boolean>>
 }
 
 
-const DroppedFish = ({droppedFish, setEndGame}:pum) => {
+const DroppedFish = ({droppedFish, setEndGame}:pum ) => {
     const Okbtn = ()=>{
         setEndGame(false)
 
@@ -29,12 +30,13 @@ const DroppedFish = ({droppedFish, setEndGame}:pum) => {
 
   return (
     <div className='dropped-box'>
-        <p className="dropped-name">You got:{droppedFish?.name}</p>
+        <p className="dropped-name">You got: {droppedFish?.name}</p>
         <div className="box-separation">
             <img src={droppedFish?.imgSrc} alt="bugggg" className="dropped-img" />
             <p className="dropped-description">Price:{droppedFish?.price}</p>
+            
         </div>
-        
+        <Button width='20%' height='13%' onClickE={Okbtn}>ok</Button>
     </div>
   )
 }

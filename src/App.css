@@ -1,19 +1,31 @@
 .fishing-box {
   position: absolute;
-  align-items: center;
-  align-self: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
   width: 7%;
   height: 300px;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   left: 50%;
 }
+
 .fishing-box .fishing-pos .float {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   position: absolute;
   border-radius: 20px;
   width: 23%;
@@ -21,14 +33,17 @@
   left: 45%;
   padding: 0;
 }
+
 .fishing-box .fishing-pos .float .min-y {
   width: 0.3%;
   height: 0.3%;
 }
+
 .fishing-box .fishing-pos .float .max-y {
   width: 0.3%;
   height: 0.3%;
 }
+
 .fishing-box .fishing-pos .fish {
   position: absolute;
   background-size: 100% 100%;
@@ -36,11 +51,15 @@
   width: 23%;
   height: 10%;
   left: 45%;
-  z-index: "1";
+  z-index: '1';
 }
+
 .fishing-box .fishing-scale {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-self: center;
+  -ms-flex-item-align: center;
+      align-self: center;
   position: absolute;
   background-color: brown;
   width: 10%;
@@ -48,8 +67,11 @@
   left: 85%;
   border-radius: 4px;
 }
+
 .fishing-box .fishing-scale .pogress-bar {
-  align-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
   position: absolute;
   background-color: yellow;
   width: 100%;
@@ -58,20 +80,27 @@
 }
 
 .btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 140%;
   max-width: 100%;
+  -webkit-transition: ease 0.3s;
   transition: ease 0.3s;
 }
+
 .btn:hover {
-  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
   opacity: 0.8;
 }
 
@@ -80,25 +109,44 @@
   height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
+
 .interface .btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
+
 .interface .btns .balance {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   height: 15%;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   color: #B7213F;
   font-family: "Papyrus";
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   font-size: 100%;
 }
+
 .interface .s-a-i {
+  -webkit-transition: 1s ease-in;
   transition: 1s ease-in;
   display: none;
   position: relative;
@@ -108,91 +156,151 @@
   font-family: "Papyrus", cursive;
   border: 4px solid #a65b24;
   border-radius: 20px;
-  box-shadow: 0 0 20px rgba(166, 91, 36, 0.5);
+  -webkit-box-shadow: 0 0 20px rgba(166, 91, 36, 0.5);
+          box-shadow: 0 0 20px rgba(166, 91, 36, 0.5);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   padding-top: 35px;
 }
+
 .interface .s-a-i .close-btn {
   position: absolute;
   right: 0;
   top: 0;
 }
+
 .interface .s-a-i .inv-box {
+  -webkit-transition: 1s ease-in;
   transition: 1s ease-in;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   gap: 10px;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   overflow-y: auto;
   overflow-x: hidden;
 }
+
 .interface .s-a-i .inv-box .fish-box {
   background: #f9e2a5;
   border: 3px solid #a65b24;
   border-radius: 16px;
   padding: 5px;
   width: 140px;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+          box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
   color: #b7213f;
   font-size: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .interface .s-a-i .inv-box .fish-box .fish-name {
   font-weight: bold;
   font-size: 16px;
   text-align: center;
   margin-bottom: 5px;
 }
+
 .interface .s-a-i .inv-box .fish-box .fish-img {
   width: 64px;
   height: 64px;
   -ms-interpolation-mode: nearest-neighbor;
+      image-rendering: -webkit-optimize-contrast;
       image-rendering: -moz-crisp-edges;
+      image-rendering: -o-pixelated;
       image-rendering: pixelated;
   margin: 5px 0;
 }
+
 .interface .s-a-i .inv-box .fish-box .info {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   width: 100%;
   font-size: 12px;
   margin: 5px 0;
 }
+
 .interface .s-a-i .inv-box .fish-box .info .fish-chance,
 .interface .s-a-i .inv-box .fish-box .info .fish-price {
   color: #703c1c;
 }
+
 .interface .s-a-i .inv-box .btn-sold {
   margin-bottom: 10px;
 }
 
 .dropped-box {
+  -webkit-transition: 0.7s ease-in;
+  transition: 0.7s ease-in;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  width: 30%;
-  height: 25%;
+  width: 25%;
+  height: 30%;
   border-radius: 7px;
-  flex-direction: column;
-  align-items: center;
-  background-color: rgb(236, 236, 236);
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  left: 40%;
+  top: 30%;
+  background-color: #ececec;
 }
+
 .dropped-box .dropped-name {
   height: 10%;
 }
+
 .dropped-box .box-separation {
   width: 85%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 0 10px;
 }
+
 .dropped-box .box-separation .dropped-img {
   width: 40%;
   height: 70%;
   border: 5px solid brown;
 }
+
+.dropped-box .btn-ok {
+  font-size: 120% !important;
+}
+
 body {
   background-color: #000;
 }
@@ -203,4 +311,5 @@ body {
       -ms-user-select: none;
           user-select: none;
   font-family: "Papyrus";
-}/*# sourceMappingURL=App.css.map */
+}
+/*# sourceMappingURL=App.css.map */

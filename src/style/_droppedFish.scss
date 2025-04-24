@@ -1,11 +1,16 @@
 .dropped-box{
+    transition: 0.7s ease-in;
+    position: absolute;
     display: flex;
-    width: 30%;
-    height: 25%;
+    width: 25%;
+    height: 30%;
     border-radius: 7px;
     flex-direction: column;
     align-items: center;
+    left: 40%;
+    top: 30%;
     
+        
     background-color: rgb(236, 236, 236);
     .dropped-name{
         height: 10%;
@@ -24,6 +29,12 @@
         .dropped-description{
 
         }
+    }
+    .btn-ok{
+        
+        font-size: 120%!important;
+        
+
     }
     
 

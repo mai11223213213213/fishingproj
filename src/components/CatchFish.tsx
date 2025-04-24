@@ -9,7 +9,7 @@ const generateRandomNumber = (min: number, max: number): number => {
 };
 interface banana{
     invCont:object,
-    droppedFish:fish | null,
+    droppedFish:fish,
     update:(data1:boolean) => void,
     update2: () => void,
     setEndGame:React.Dispatch<React.SetStateAction<boolean>>
@@ -19,7 +19,7 @@ const CatchFish = ({invCont, droppedFish,update, update2,setEndGame}:banana) => 
     const [isMouseDown, setIsMouseDown] = useState(true);
     const [floatPos, setFloatPos] = useState(fishPos);
     const [newFishPos, setNewFishPos] = useState(generateRandomNumber(1, 230));
-    const [finishScale, setFinishScale] = useState(1);
+    const [finishScale, setFinishScale] = useState(20);
     const [trueFishPos, setTrueFishPos] = useState(0)
 
     const [floatManPos, setFloatMaxPos] = useState(0)
@@ -104,11 +104,11 @@ const CatchFish = ({invCont, droppedFish,update, update2,setEndGame}:banana) => 
 
 
         if (trueFishPos >= floatMinPos && trueFishPos <= floatManPos && finishScale < 100) { 
-            setFinishScale((prev) => prev + 0.05)
+            setFinishScale((prev) => prev + droppedFish?.scaleFillspd)
 
         }
         else if(finishScale > 0  ){
-            setFinishScale((prev) => prev - 0.001)
+            setFinishScale((prev) => prev - 0.0025)
 
         }
     }, [floatPos, trueFishPos, finishScale]);
