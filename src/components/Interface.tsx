@@ -17,6 +17,7 @@ import EpicFish2 from '../assets/img/fishes/Epic_fish2.jpg';
 import LegendaryFish1 from '../assets/img/fishes/Legendary_fish1.jpg';
 import LegendaryFish2 from '../assets/img/fishes/Legendary_fish2.jpg';
 import DroppedFish from "./DroppedFish"
+import Shop from "./Shop"
 
 export type fish = {
   name:string,
@@ -30,13 +31,127 @@ export type fish = {
 }
 export type forShop = {
   name:string,
-  imgSrc:string,
   price:number,
-  lowboost?:number,
-  highboost?:number,
-  lengthboost?:number
+  boostPrice:number,
+  fillSpd:number,
+
 
 }
+let fishCopy : fish[] = [
+  {
+    name:"Common fish1",
+    imgSrc:CommonFish1,
+    quality:"common",
+    price:10,
+    chance:0.4,
+    fishSp:1.2,
+    scaleFillspd:0.009
+    
+
+  },
+  {
+    name:"Common fish2",
+    imgSrc:CommonFish2,
+    quality:"common",
+    price:10,
+    chance:0.4,
+    fishSp:1.2,
+    
+    scaleFillspd:0.009
+    
+
+  },
+  {
+    name:"Rare fish1",
+    imgSrc:RareFish1,
+    quality:"rare",
+    price:25,
+    chance:0.05,
+    fishSp:0.7,
+    scaleFillspd:0.007
+    
+
+  },
+  {
+    name:"Rare fish2",
+    imgSrc:RareFish2,
+    quality:"rare",
+    price:25,
+    chance:0.05,
+    fishSp:0.7,
+    scaleFillspd:0.007
+    
+
+  },
+  {
+    name:"Super rare fish1",
+    imgSrc:SuperrareFish1,
+    quality:"Super rare",
+    price:50,
+    chance:0.025,
+    fishSp:0.5,
+    scaleFillspd:0.004
+    
+
+  },
+  {
+    name:"Super rare fish2",
+    imgSrc:SuperrareFish2,
+    quality:"Super rare", 
+    price:50,
+    chance:0.025,
+    fishSp:0.5,
+    scaleFillspd:0.004
+    
+
+  },
+  {
+    name:"Epic fish1",
+    imgSrc:EpicFish1,
+    quality:"epic",
+    price:200,
+    chance:0.015,
+    fishSp:0.3,
+    scaleFillspd:0.003
+    
+
+  },
+  {
+    name:"Epic fish2",
+    imgSrc:EpicFish2,
+    quality:"epic",
+    price:200,
+    chance:0.020,
+    fishSp:0.3,
+    scaleFillspd:0.003
+    
+
+  },
+  {
+    name:"Legendary fish1",
+    imgSrc:LegendaryFish1,
+    quality:"legendary",
+    price:500,
+    chance:0.01,
+    fishSp:0.2,
+    scaleFillspd:0.002
+    
+
+  },
+  {
+    name:"Legendary fish2",
+    imgSrc:LegendaryFish2,
+    quality:"legendary",
+    price:500,
+    chance:0.01,
+    fishSp:0.2,
+    scaleFillspd:0.002
+    
+
+  },
+
+
+]
 let fish : fish[] = [
   {
     name:"Common fish1",
@@ -153,15 +268,62 @@ let fish : fish[] = [
 
 ]
 
+let shopFilling : forShop[] = [
+  {
+    name:"Upgrade 1",
+    price:1000,
+    boostPrice:1.5,
+    fillSpd:0.001
+
+  },
+  {
+    name:"Upgrade 2",
+    price:3000,
+    boostPrice:2.2,
+    fillSpd:0.001
+
+  },
+  {
+    name:"Upgrade 3",
+    price:7000,
+    boostPrice:3,
+    fillSpd:0.0015
+
+  },
+  {
+    name:"Upgrade 4",
+    price:12000,
+    boostPrice:3.5,
+    fillSpd:0.002
+
+  },
+  {
+    name:"Upgrade 5",
+    price:20000,
+    boostPrice:5,
+    fillSpd:0.003
+
+  },
+  
+]
+
 
 
 
 
 const Interface = () => {
   const [inventoryContent, setinventoryContent] = useState<fish[]>([])
+  const [ShopContent, setShopContent] = useState<forShop[]>(shopFilling)
+  
   const [currState, setCurrState] = useState(0)
   const [random_num,setRandomNum] = useState(0)
   const [balance, setBalance] = useState(0)
+  const [currUpgrade, setCurrUpgrade] =  useState<forShop>({
+    name:"null",
+    price:0,
+    boostPrice:1,
+    fillSpd:0
+  })
   
   const [droppedFish, setDroppedFish] = useState<fish>({
     name:"null",
@@ -195,6 +357,10 @@ const Interface = () => {
   }
   const updateInvStatusDel = (index:number) =>{
     setinventoryContent((prev) => prev ? prev.filter((_, i) => i !== index) : [])
+
+  }
+  const UpgradeFish = (newFish:fish[]) => {
+    fish = newFish
 
   }
 
@@ -259,8 +425,9 @@ const Interface = () => {
     content = (
       <div className="s-a-i" >
           <CloseBtn width="10%" height="5%" className="close-btn" onClick={closeBtn} />
+          <Shop fishes={fishCopy} shopContent={ShopContent}/>
 
-        BANANA
+       
       </div>
     );
   }
