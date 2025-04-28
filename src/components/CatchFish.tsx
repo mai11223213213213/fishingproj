@@ -67,15 +67,15 @@ const CatchFish = ({invCont, droppedFish,update, update2,setEndGame, currUpgrade
 
     useEffect(() => {
         const handleMouseDown = (event: MouseEvent) => {
-            if (event.button === 0) {
+            
                 setIsMouseDown(false);
-            }
+            
         };
 
         const handleMouseUp = (event: MouseEvent) => {
-            if (event.button === 0) {
+            
                 setIsMouseDown(true);
-            }
+            
         };
 
         document.addEventListener('mousedown', handleMouseDown);
