@@ -3,7 +3,7 @@ import fishingField from "../assets/img/fishing-textures/fishing-field.jpg"
 import greenThing from "../assets/img/fishing-textures/greenThing.jpg"
 import fishThatMoves from "../assets/img/fishing-textures/fish-that-moving.jpg"
 import ForFishingField from "../assets/img/fishing-textures/for-fishing-field.jpg"
-import { fish } from './Interface'
+import { fish, forShop } from './Interface'
 const generateRandomNumber = (min: number, max: number): number => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 };
@@ -12,9 +12,10 @@ interface banana{
     droppedFish:fish,
     update:(data1:boolean) => void,
     update2: () => void,
-    setEndGame:React.Dispatch<React.SetStateAction<boolean>>
+    setEndGame:React.Dispatch<React.SetStateAction<boolean>>,
+    currUpgrade:forShop
 }
-const CatchFish = ({invCont, droppedFish,update, update2,setEndGame}:banana) => {
+const CatchFish = ({invCont, droppedFish,update, update2,setEndGame, currUpgrade}:banana) => {
     const [fishPos, setFishPos] = useState(generateRandomNumber(1, 230));
     const [isMouseDown, setIsMouseDown] = useState(true);
     const [floatPos, setFloatPos] = useState(fishPos);
@@ -104,7 +105,9 @@ const CatchFish = ({invCont, droppedFish,update, update2,setEndGame}:banana) => 
 
 
         if (trueFishPos >= floatMinPos && trueFishPos <= floatManPos && finishScale < 100) { 
-            setFinishScale((prev) => prev + droppedFish?.scaleFillspd)
+            setFinishScale((prev) => prev + droppedFish?.scaleFillspd  + currUpgrade.fillSpd)
+            console.log(droppedFish?.scaleFillspd  + currUpgrade.fillSpd)
+            console.log(droppedFish?.scaleFillspd , currUpgrade.fillSpd)
 
         }
         else if(finishScale > 0  ){

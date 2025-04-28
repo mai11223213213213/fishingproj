@@ -285,21 +285,21 @@ let shopFilling : forShop[] = [
   },
   {
     name:"Upgrade 3",
-    price:7000,
+    price:25000,
     boostPrice:3,
     fillSpd:0.0015
 
   },
   {
     name:"Upgrade 4",
-    price:12000,
+    price:75000,
     boostPrice:3.5,
     fillSpd:0.002
 
   },
   {
     name:"Upgrade 5",
-    price:20000,
+    price:150000,
     boostPrice:5,
     fillSpd:0.003
 
@@ -359,8 +359,10 @@ const Interface = () => {
     setinventoryContent((prev) => prev ? prev.filter((_, i) => i !== index) : [])
 
   }
-  const UpgradeFish = (newFish:fish[]) => {
+  const UpgradeFish = (newFish:fish[], index:number) => {
     fish = newFish
+    setShopContent((prev) => prev ? prev.filter((_, i) => i !== index) : [])
+
 
   }
 
@@ -425,7 +427,7 @@ const Interface = () => {
     content = (
       <div className="s-a-i" >
           <CloseBtn width="10%" height="5%" className="close-btn" onClick={closeBtn} />
-          <Shop fishes={fishCopy} shopContent={ShopContent}/>
+          <Shop fishStart={fishCopy} fishChange={fish} shopContent={ShopContent} setBalance={setBalance} balance={balance} UpgradeFish={UpgradeFish} setCurrUpdrade={setCurrUpgrade}/>
 
        
       </div>
@@ -452,7 +454,7 @@ const Interface = () => {
       {content}
 
       
-      {isGame && <CatchFish invCont={inventoryContent} droppedFish={droppedFish} update={updateGameStatus} update2={updateInvStatusAdd} setEndGame={setIsEndGame}/>}
+      {isGame && <CatchFish invCont={inventoryContent} droppedFish={droppedFish} update={updateGameStatus} update2={updateInvStatusAdd} setEndGame={setIsEndGame} currUpgrade={currUpgrade}/>}
       {isEndGame && <DroppedFish droppedFish={droppedFish} setEndGame={setIsEndGame}/>  }
 
     </section>
