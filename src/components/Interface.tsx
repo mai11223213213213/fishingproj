@@ -249,7 +249,7 @@ let fish : fish[] = [
     price:500,
     chance:0.01,
     fishSp:0.2,
-    scaleFillspd:0.002
+    scaleFillspd:0.0025
     
 
   },
@@ -260,7 +260,7 @@ let fish : fish[] = [
     price:500,
     chance:0.01,
     fishSp:0.2,
-    scaleFillspd:0.002
+    scaleFillspd:0.0025
     
 
   },
